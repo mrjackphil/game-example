@@ -1,21 +1,25 @@
+export type InputConfig = InputConfigElem[];
+
+interface InputConfigElem {
+  key: number;
+  action: (...args: any[]) => void;
+}[];
+
 class InputModule {
   private scene: Phaser.Scene;
-  private events: [Phaser.Input.Keyboard.Key, (...args: any[]) => void][];
 
   constructor() {
     this.scene = null;
-    this.events = [];
   };
 
   public attachToScene(scene: Phaser.Scene) {
     this.scene = scene;
   }
 
-  public initControls() {
-    this.events.push( [this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W), () => console.log('up')] );
-    this.events.forEach( e => {
-      e[0].on('down', e[1]);
-    })
+  public initControls(conf: InputConfig) {
+    conf.forEach( e => {
+      this.scene.input.keyboard.addKey(e.key).on('down', e.action);
+    });
   }
 };
 

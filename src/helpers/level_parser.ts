@@ -12,7 +12,8 @@ function sceneParser(level: string, characterData: ASCIIRenderConfig): SceneObje
     .split(/\n/)
     .map( e => e.split('') )
     .map( (e, rowIndex) => parseRow(e, rowIndex) )
-    .reduce( (p, n) => p.concat(...n), []);
+    .reduce( (p, n) => p.concat(...n), [])
+    .map( (e, index) => ({ ...e, id: index }));
 
   return sceneObject;
 }
