@@ -7,6 +7,7 @@ import InputModule, { InputConfig } from "./module/input";
 import GameStore from './module/store';
 import sceneParser from "./helpers/level_parser";
 import { move, Direction } from "./module/movement";
+import objects from "./data/objects";
 
 const config = {
   type: Phaser.AUTO,
@@ -31,8 +32,9 @@ function sceneRenderer() {
   const scene = this as Phaser.Scene;
   const cellSize = 50;
   const renderConf = {
-    "#": characters.Wooky,
     "@": characters.Player,
+    "#": objects.wall,
+    ".": objects.floor,
   };
   const inputConf: InputConfig = [
     {
