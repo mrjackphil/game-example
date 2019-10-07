@@ -1,29 +1,12 @@
-const characters: Character[] = [
-  {
-    name: "Wooky",
-    position: {
-      x: 0,
-      y: 0,
-    },
-  }
-];
-
-export const Wooky: Character = {
-  name: 'Wooky',
-  position: {
-    x: 0,
-    y: 0,
+const characters: { [key: string]: Character} = {
+  "Wooky": {
+    name: 'Wooky',
+    render: 'W',
   },
-  render: 'W',
-}
-
-export const Player: Character = {
-  name: 'Player',
-  position: {
-    x: 0,
-    y: 0,
+  "Player": {
+    name: 'Player',
+    render: '@',
   },
-  render: '@',
-}
+};
 
 export default characters;

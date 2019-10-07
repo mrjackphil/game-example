@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import logoImg from "./assets/logo.png";
-import characters, { Wooky, Player } from "./data/characters";
+import characters from "./data/characters";
 import devLevel from "./scenes/dev";
 import RenderModule from "./module/render";
 import InputModule, { InputConfig } from "./module/input";
@@ -30,8 +30,8 @@ function sceneRenderer() {
   const scene = this as Phaser.Scene;
   const cellSize = 50;
   const renderConf = {
-    "#": Wooky,
-    "@": Player,
+    "#": characters.Wooky,
+    "@": characters.Player,
   };
   const inputConf: InputConfig = [{
     key: Phaser.Input.Keyboard.KeyCodes.W,

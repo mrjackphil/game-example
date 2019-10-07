@@ -1,5 +1,5 @@
 interface Character<Render = ASCIIRender> {
   name: string;
-  position: WorldPosition;
+  position?: WorldPosition;
   render?: Render;
 }
