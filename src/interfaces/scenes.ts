@@ -1,4 +1,1 @@
-export interface SceneObject<Render = ASCIIRender> {
-  position: WorldPosition;
-  render?: Render;
-}
+export interface SceneObject extends GameObjects {}

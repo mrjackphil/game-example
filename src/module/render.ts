@@ -16,7 +16,21 @@ class RenderModule {
 
   render(objects: SceneObject[]) {
     const {scene, cellSize} = this;
-    return objects.map( e => scene.add.text( e.position.x * cellSize, e.position.y * cellSize, e.render ) );
+
+    function findAllInPlace(obj: SceneObject[], pos: WorldPosition) {
+      return obj.filter( e => e.position.x === pos.x && e.position.y === pos.y );
+    }
+
+    function checkZIndex(obj: SceneObject[], zIndex: number) {
+      return obj.map( e => e.zIndex ).reduce( (p, n) => n > p ? n : p, 0) === zIndex;
+    }
+
+    const renderedElms = objects.filter( e => {
+      const elems = findAllInPlace(objects, e.position)
+      return elems.length === 1 || checkZIndex(elems, e.zIndex)
+    });
+
+    return renderedElms.map( e => scene.add.text( e.position.x * cellSize, e.position.y * cellSize, e.render ) );
 };
 
 }
