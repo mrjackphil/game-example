@@ -1,5 +1,8 @@
 import Phaser from "phaser";
 import logoImg from "./assets/logo.png";
+import characters, { Wooky } from "./data/characters";
+import devLevel from "./scenes/dev";
+import sceneParser from './helpers/level_parser';
 
 const config = {
   type: Phaser.AUTO,
@@ -8,7 +11,7 @@ const config = {
   height: 600,
   scene: {
     preload: preload,
-    create: create
+    create: sceneRenderer,
   }
 };
 
@@ -18,15 +21,15 @@ function preload() {
   this.load.image("logo", logoImg);
 }
 
-function create() {
-  const logo = this.add.image(400, 150, "logo");
+function sceneRenderer() {
+  const scene = this as Phaser.Scene;
+  const level = devLevel.trim().replace(/\n\s+?(#)/g, '\n$1');
+  const cellSize = 50;
+  const renderConf = {
+    "#": Wooky,
+  };
 
-  this.tweens.add({
-    targets: logo,
-    y: 450,
-    duration: 2000,
-    ease: "Power2",
-    yoyo: true,
-    loop: -1
+  sceneParser(level, renderConf).forEach( e => {
+    scene.add.text( e.position.x * cellSize, e.position.y * cellSize, e.render );
   });
 }
