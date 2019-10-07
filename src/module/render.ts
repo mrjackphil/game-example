@@ -1,4 +1,5 @@
 import { SceneObject } from "../interfaces/scenes";
+import { findAllInPlace } from "../helpers/object_placement";
 
 class RenderModule {
   scene: Phaser.Scene;
@@ -16,10 +17,6 @@ class RenderModule {
 
   render(objects: SceneObject[]) {
     const {scene, cellSize} = this;
-
-    function findAllInPlace(obj: SceneObject[], pos: WorldPosition) {
-      return obj.filter( e => e.position.x === pos.x && e.position.y === pos.y );
-    }
 
     function checkZIndex(obj: SceneObject[], zIndex: number) {
       return obj.map( e => e.zIndex ).reduce( (p, n) => n > p ? n : p, 0) === zIndex;
