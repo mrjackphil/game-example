@@ -2,7 +2,8 @@ import Phaser from "phaser";
 import logoImg from "./assets/logo.png";
 import characters, { Wooky } from "./data/characters";
 import devLevel from "./scenes/dev";
-import sceneParser from './helpers/level_parser';
+import RenderModule from "./module/render";
+import InputModule from "./module/input";
 
 const config = {
   type: Phaser.AUTO,
@@ -28,8 +29,8 @@ function sceneRenderer() {
   const renderConf = {
     "#": Wooky,
   };
+  InputModule.attachToScene(scene);
+  InputModule.initControls();
 
-  sceneParser(level, renderConf).forEach( e => {
-    scene.add.text( e.position.x * cellSize, e.position.y * cellSize, e.render );
-  });
+  RenderModule(scene, level, renderConf, cellSize);
 }
