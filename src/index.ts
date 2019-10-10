@@ -35,6 +35,7 @@ function sceneRenderer() {
   const cellSize = 50;
   const renderConf = {
     "@": characters.Player,
+    'W': characters.Wooky,
     "#": objects.wall,
     ".": objects.floor,
   };
