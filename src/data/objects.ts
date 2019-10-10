@@ -8,6 +8,7 @@ const objects: { [key: string]: EnviromentObject } = {
     name: 'Ground',
     render: '#',
     zIndex: 0,
+    solid: true,
   }
 }
 
