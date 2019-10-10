@@ -32,7 +32,7 @@ function preload() {
 
 function sceneRenderer() {
   const scene = this as Phaser.Scene;
-  const cellSize = 50;
+  const cellSize = 20;
   const renderConf = {
     "@": characters.Player,
     'W': characters.Wooky,
