@@ -1,5 +1,5 @@
 class GameStore {
-  public objects: any[];
+  public objects: InWorldGameObject[];
   public rendered: any[];
   constructor() {
     this.objects = [];

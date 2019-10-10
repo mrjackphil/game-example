@@ -3,9 +3,14 @@ interface WorldPosition {
   y: number;
 }
 
-interface GameObjects<Render = ASCIIRender> {
+interface GameObject<Render = ASCIIRender> {
   name: string;
   position?: WorldPosition;
   render?: Render;
   zIndex?: number;
+  solid?: boolean;
+}
+
+interface InWorldGameObject extends GameObject {
+  position: WorldPosition;
 }

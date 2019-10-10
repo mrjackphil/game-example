@@ -1,1 +1,1 @@
-interface Character extends GameObjects {}
+interface Character extends GameObject {}

@@ -1,1 +1,1 @@
-export interface SceneObject extends GameObjects {}
+export interface SceneObject extends InWorldGameObject {}

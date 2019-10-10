@@ -1,4 +1,4 @@
-import Phaser from "phaser";
+import Phaser, { Game } from "phaser";
 import logoImg from "./assets/logo.png";
 import characters from "./data/characters";
 import devLevel from "./scenes/dev";
@@ -6,7 +6,7 @@ import RenderModule from "./module/render";
 import InputModule, { InputConfig } from "./module/input";
 import GameStore from './module/store';
 import sceneParser from "./helpers/level_parser";
-import { move, Direction } from "./module/movement";
+import { move, Direction, isSolid } from "./module/movement";
 import objects from "./data/objects";
 
 const config = {
@@ -65,7 +65,12 @@ function sceneRenderer() {
   store.rendered = renderer.render(store.objects);
 
   function makeStep(dir: Direction) {
-    store.objects = store.objects.map( e => e.render === '@' ? move(e, dir) : e)
+    function moveAction(_instance: InWorldGameObject, _dir: Direction, _store: InWorldGameObject[]) {
+      const instanceWithNextPosition = move(_instance, _dir);
+      return isSolid(_store, instanceWithNextPosition) ? _instance : instanceWithNextPosition;
+    }
+
+    store.objects = store.objects.map( e => e.render === '@' ? moveAction(e, dir, store.objects) : e)
     clearScene();
     updateStep();
   }

@@ -3,5 +3,5 @@ type ASCIIRender = string;
 type Configuration = ASCIIRenderConfig;
 
 interface ASCIIRenderConfig {
-  [key: string]: GameObjects;
+  [key: string]: GameObject;
 }

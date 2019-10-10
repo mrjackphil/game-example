@@ -1,1 +1,1 @@
-interface EnviromentObject extends GameObjects {};
+interface EnviromentObject extends GameObject {};
