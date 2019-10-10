@@ -6,6 +6,7 @@ interface WorldPosition {
 interface GameObject<Render = ASCIIRender> {
   name: string;
   position?: WorldPosition;
+  floor?: string;
   render?: Render;
   zIndex?: number;
   solid?: boolean;
@@ -13,4 +14,5 @@ interface GameObject<Render = ASCIIRender> {
 
 interface InWorldGameObject extends GameObject {
   position: WorldPosition;
+  floor?: string;
 }

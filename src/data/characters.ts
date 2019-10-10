@@ -6,6 +6,7 @@ const characters: { [key: string]: Character} = {
   "Player": {
     name: 'Player',
     render: '@',
+    floor: '.',
     zIndex: 1,
   },
 };
