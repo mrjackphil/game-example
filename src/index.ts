@@ -25,7 +25,10 @@ const store = GameStore;
 const renderer = new RenderModule();
 
 function preload() {
-  this.load.image("logo", logoImg);
+  const scene = this as Phaser.Scene;
+
+  scene.load.image("logo", logoImg);
+  scene.load.bitmapFont('atari-smooth', 'src/assets/fonts/atari-smooth/atari-smooth.png', 'src/assets/fonts/atari-smooth/atari-smooth.xml');
 }
 
 function sceneRenderer() {
@@ -64,6 +67,7 @@ function sceneRenderer() {
   store.objects = sceneParser(devLevel, renderConf);
   store.rendered = renderer.render(store.objects);
 
+  /* When player use WASD */
   function makeStep(dir: Direction) {
     function moveAction(_instance: InWorldGameObject, _dir: Direction, _store: InWorldGameObject[]) {
       const instanceWithNextPosition = move(_instance, _dir);
