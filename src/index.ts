@@ -21,7 +21,6 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
-const store = GameStore;
 const renderer = new RenderModule();
 
 function preload() {
@@ -64,8 +63,8 @@ function sceneRenderer() {
   /* Init Renderer */
   renderer.init(scene, cellSize);
 
-  store.objects = sceneParser(devLevel, renderConf);
-  store.rendered = renderer.render(store.objects);
+  GameStore.objects = sceneParser(devLevel, renderConf);
+  GameStore.rendered = renderer.render(GameStore.objects);
 
   /* When player use WASD */
   function makeStep(dir: Direction) {
@@ -74,16 +73,16 @@ function sceneRenderer() {
       return isSolid(_store, instanceWithNextPosition) ? _instance : instanceWithNextPosition;
     }
 
-    store.objects = store.objects.map( e => e.render === '@' ? moveAction(e, dir, store.objects) : e)
+    GameStore.objects = GameStore.objects.map( e => e.render === '@' ? moveAction(e, dir, GameStore.objects) : e)
     clearScene();
     updateStep();
   }
 }
 
 function updateStep() {
-  store.rendered = renderer.render(store.objects);
+  GameStore.rendered = renderer.render(GameStore.objects);
 }
 
 function clearScene() {
-  store.rendered.forEach( obj => obj.destroy() );
+  GameStore.rendered.forEach( obj => obj.destroy() );
 }
