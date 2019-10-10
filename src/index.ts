@@ -6,7 +6,7 @@ import RenderModule from "./module/render";
 import InputModule, { InputConfig } from "./module/input";
 import GameStore from './module/store';
 import sceneParser from "./helpers/level_parser";
-import { move, Direction, isSolid } from "./module/movement";
+import { returnNewPosition, Direction, isSolid } from "./module/movement";
 import objects from "./data/objects";
 
 const config = {
@@ -68,12 +68,17 @@ function sceneRenderer() {
 
   /* When player use WASD */
   function makeStep(dir: Direction) {
-    function moveAction(_instance: InWorldGameObject, _dir: Direction, _store: InWorldGameObject[]) {
-      const instanceWithNextPosition = move(_instance, _dir);
+    function characterMoveAction(_instance: InWorldGameObject, _direction: Direction, _store: InWorldGameObject[]) {
+      const instanceWithNextPosition = returnNewPosition(_instance, _direction);
       return isSolid(_store, instanceWithNextPosition) ? _instance : instanceWithNextPosition;
     }
 
-    GameStore.objects = GameStore.objects.map( e => e.render === '@' ? moveAction(e, dir, GameStore.objects) : e)
+    GameStore.objects = GameStore.objects.map( object =>
+      object.render === '@'
+      ? characterMoveAction(object, dir, GameStore.objects)
+      : object
+    );
+
     clearScene();
     updateStep();
   }
