@@ -23,11 +23,11 @@ function sceneParser(level: string, characterData: ASCIIRenderConfig): SceneObje
 
   const trimLevel = level.trim().replace(/\n\s+?(#)/g, '\n$1');
   const sceneObject = trimLevel
-    .split(/\n/)
-    .map( e => e.split('') )
-    .map( (e, rowIndex) => parseRow(e, rowIndex) )
-    .reduce( (p, n) => p.concat(...n), [])
-    .map( (e, index) => ({ ...e, id: index }));
+    .split(/\n/)                                    // Split by rows
+    .map( e => e.split('') )                        // Split by character
+    .map( (e, rowIndex) => parseRow(e, rowIndex) )  // Parse each character
+    .reduce( (p, n) => p.concat(...n), [])          // Put all in object
+    .map( (e, index) => ({ ...e, id: index }));     // Add IDs
 
   return sceneObject;
 }
