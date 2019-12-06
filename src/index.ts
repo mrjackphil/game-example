@@ -16,7 +16,7 @@ const config = {
   height: 600,
   scene: {
     preload: preload,
-    create: sceneRenderer,
+    create: renderScene,
   }
 };
 
@@ -37,7 +37,7 @@ function preload() {
     'src/assets/fonts/source-code-pro/source-code-pro.xml');
 }
 
-function sceneRenderer() {
+function renderScene() {
   const scene = this as Phaser.Scene;
   const cellSize = 20;
   const renderConf = {
