@@ -27,7 +27,7 @@ class RenderModule {
       return elems.length === 1 || checkZIndex(elems, e.zIndex)
     });
 
-    return renderedElms.map( e => scene.add.bitmapText( e.position.x * cellSize, e.position.y * cellSize, 'atari-smooth', e.render, 16 ) );
+    return renderedElms.map( e => scene.add.bitmapText( e.position.x * cellSize, e.position.y * cellSize, 'source-code-pro', e.render, 32 ) );
 };
 
 }

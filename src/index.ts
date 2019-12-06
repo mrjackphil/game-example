@@ -28,6 +28,13 @@ function preload() {
 
   scene.load.image("logo", logoImg);
   scene.load.bitmapFont('atari-smooth', 'src/assets/fonts/atari-smooth/atari-smooth.png', 'src/assets/fonts/atari-smooth/atari-smooth.xml');
+  scene.load.bitmapFont(
+    'source-code-pro',
+    [
+      'src/assets/fonts/source-code-pro/source-code-pro_0.png',
+      'src/assets/fonts/source-code-pro/source-code-pro_1.png'
+    ],
+    'src/assets/fonts/source-code-pro/source-code-pro.xml');
 }
 
 function sceneRenderer() {
