@@ -1,7 +1,7 @@
 import { SceneObject } from "../interfaces/scenes";
 
 function sceneParser(level: string, characterData: ASCIIRenderConfig): SceneObject[] {
-  function parseRow(rowString: string[], rowIndex) {
+  function parseRow(rowString: string[], rowIndex: number) {
     const floor = characterData['.'];
 
     const objsToRender = rowString
